@@ -1,0 +1,27 @@
+{
+  "name": "express",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.11",
+    "convert-array-to-csv": "^2.0.0",
+    "crypto": "^1.0.1",
+    "csv-stringify": "^6.1.0",
+    "express": "^4.18.1",
+    "jsdom": "^19.0.0",
+    "json-2-csv": "^3.17.1",
+    "json2csv": "^5.0.7",
+    "lodash": "^4.17.21",
+    "objects-to-csv": "^1.3.6",
+    "puppeteer": "^14.2.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
+  },
+  "devDependencies": {},
+  "description": ""
+}
