@@ -10,9 +10,13 @@ const port = 3000;
 app.get('/', async (req, res) => {
 	const start = req.query?.start || 0;
 	const end = req.query?.end || 3;
+	const host =
+		req.query?.host == 'jav'
+			? `https://www.141jav.com/new?page=`
+			: `https://www.141ppv.com/new?page=`;
 	console.log({ start }, { end });
 	const url = (index) => {
-		return `https://www.141jav.com/new?page=${index}`;
+		return `${host}${index}`;
 	};
 
 	try {
@@ -26,6 +30,7 @@ app.get('/', async (req, res) => {
 			for (var i = 0; i < l.length; i++) {
 				arr.push(l[i].href);
 			}
+			console.log({ arr });
 			const needArr = arr.filter((item) => item.includes('magnet:'));
 			// console.log({ needArr });
 			data = [...data, ...needArr];
