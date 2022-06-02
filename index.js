@@ -8,14 +8,22 @@ const app = express();
 const port = 3000;
 // const url = 'https://www.141jav.com/new';
 app.get('/', async (req, res) => {
-	const start = req.query?.start || 0;
-	const end = req.query?.end || 3;
-	const host =
+	let start = req.query?.start || 0;
+	let end = req.query?.end || 3;
+	let host =
 		req.query?.host == 'jav'
 			? `https://www.141jav.com/new?page=`
 			: `https://www.141ppv.com/new?page=`;
-	console.log({ start }, { end });
+	if (!req.query?.host) {
+		start = 0;
+		end = 1;
+		host = 'https://sukebei.nyaa.si/?s=leechers&o=desc';
+	}
+	console.log({ start }, { end }, { host });
 	const url = (index) => {
+		if (host === 'https://sukebei.nyaa.si/?s=leechers&o=desc') {
+			return host;
+		}
 		return `${host}${index}`;
 	};
 
@@ -27,10 +35,12 @@ app.get('/', async (req, res) => {
 			const dom = new JSDOM(`${html}`);
 			var arr = [],
 				l = dom.window.document.links;
+			console.log('ddd');
 			for (var i = 0; i < l.length; i++) {
+				console.log('link', l[i].href);
 				arr.push(l[i].href);
 			}
-			console.log({ arr });
+
 			const needArr = arr.filter((item) => item.includes('magnet:'));
 			// console.log({ needArr });
 			data = [...data, ...needArr];
